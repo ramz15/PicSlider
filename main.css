@@ -1,8 +1,8 @@
-#buttons {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 20;
+#thumbs, #black_sheet {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 10;
 }
 
 #canvas {
@@ -13,7 +13,15 @@
 }
 
 img {
-  position: relative;
-  float: left;
-  display: inline-block;
+	position: relative;
+	float: left;
+	display: inline-block;
+}
+
+a img {
+	opacity:.4;
+}
+
+a img:hover {
+	opacity:1.0;
 }
