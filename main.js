@@ -1,21 +1,25 @@
 $(document).ready(function() {
 
-  var pic_array = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG"];
+  var pic_array = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", "6.JPG"];
 
   for(pic in pic_array) {
-    $("#pics").append("<img src=\"images/" + pic_array[pic] + "\">");
+    $("#canvas").append("<img src=\"images/" + pic_array[pic] + "\">");
   }
 
   var window_width = $(window).width();
-  var pic_width = (pic_array.length * window_width + 50);
+  var window_height = $(window).height();
+
+  var canvas_width = (2 * window_width + 50);
+  var canvas_height = (3 * window_height + 50);
   
-  $("#pics").css({
-    "width": pic_width
+  $("#canvas").css({
+    "width": canvas_width
+    "height": canvas_height
   });
   
-  $("#pics").children().css({
+  $("#canvas").children().css({
     "width": window_width,
-    "height": "100%"
+    "height": window_height
   });
 
   $("IMG:not(:first-child)").hide();
