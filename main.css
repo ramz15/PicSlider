@@ -1,0 +1,17 @@
+#scroll_btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+}
+
+#pics {
+  width: 100%;
+/*  position: absolute;
+*/}
+
+img {
+  position: relative;
+  float: left;
+  display: inline-block;
+}
