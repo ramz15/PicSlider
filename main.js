@@ -23,19 +23,62 @@ $(document).ready(function() {
 	});
 
 	$("#canvas").children().css({
-	"width": (window_width-(margin*2)),
-	"height": (window_height-(margin*2)),
+	"width": window_width,
+	"height": window_height,
 	"margin": (margin + "px")
 	});
 	
-	$("#scroll_btn").click(function () {
+	var lr_mov = window_width+(margin*2);
+	var ud_mov = window_height+(margin*2); 
+	
+	
+	
+function move(dir, speed){
+	var $old_top = parseInt($('#canvas').css('top'));
+	var $old_left = parseInt($('#canvas').css('left'));
+	
+	if(dir === 'down') {		
 		$('#canvas').animate({ 
-		  left: -(window_width+(margin*2))
-		});
+			top: ($old_top - ud_mov) + 'px'
+		}, speed);
+	}
+
+	else if(dir === 'up') {
+		$('#canvas').animate({ 
+			top: ($old_top + ud_mov) + 'px'
+		}, speed);
+	}
+
+	else if(dir === 'right') {
+		$('#canvas').animate({ 
+			left: ($old_left - lr_mov) + 'px'
+		}, speed);
+	}
+
+	else if(dir === 'left') {
+		$('#canvas').animate({ 
+			left: ($old_left + lr_mov) + 'px'
+		}, speed);
+	}
+}
+	
+	
+	$("#right_btn").click(function () {
+		move('right', 1000);
 	});
+
+	$("#left_btn").click(function () {
+		move('left', 1000);
+	});
+	
+	$("#down_btn").click(function () {
+		move('down', 1000);
+	});
+	
+	$("#up_btn").click(function () {
+		move('up', 1000);	
+	});
+
+
 });
-
-
-
-
 
