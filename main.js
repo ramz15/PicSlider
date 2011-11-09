@@ -37,8 +37,8 @@ $(document).ready(function() {
 	}).show();
 	
 	//set width and movement variables
-	var pic_width = $(window).width()/2.5;
-	var pic_height = $(window).height()/2.5;
+	var pic_width = $(window).width()/1.5;
+	var pic_height = $(window).height()/1.5;
 	
 	var margin = 5;
 	
@@ -77,7 +77,7 @@ function move(end_row, end_col, speed){
 		var class_name = $(this).children().attr('class');
 		row_num = class_name.charAt(4);
 		col_num = class_name.charAt(10);
-		move(row_num, col_num, 1200);
+		move(row_num, col_num, "fast");
 	});
 
 });
