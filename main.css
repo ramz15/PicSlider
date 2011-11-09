@@ -19,9 +19,5 @@ img {
 }
 
 a img {
-	opacity:.4;
-}
-
-a img:hover {
-	opacity:1.0;
+	opacity: 0.4;
 }
