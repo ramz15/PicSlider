@@ -2,9 +2,10 @@ $(document).ready(function() {
 	
 	//plug in pics into DOM
 	var pic_array = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", "6.JPG"];
+	var thumb_array = ["1_thumb.JPG", "2_thumb.JPG", "3_thumb.JPG", "4_thumb.JPG", "5_thumb.JPG", "6_thumb.JPG"];
 	
 	for(pic in pic_array) {
-	$("#canvas").append("<img src=\"images/" + pic_array[pic] + "\">");
+	$("#canvas").append("<img src=\"images/" + thumb_array[pic] + "\">");
 	}
 	
 	//create buttons in appropriate positions
@@ -14,7 +15,7 @@ $(document).ready(function() {
 	
 	for(i=0; i<rows; i++){
 		for(j=0; j<cols; j++){
-			$('#thumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\" src=\"images/" + pic_array[count] + "\" /></a>").hide();
+			$('#thumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\" src=\"images/" + thumb_array[count] + "\" /></a>").hide();
 			count += 1
 		}
 	}
@@ -77,8 +78,15 @@ function move(end_row, end_col, speed){
 		var class_name = $(this).children().attr('class');
 		row_num = class_name.charAt(4);
 		col_num = class_name.charAt(10);
-		move(row_num, col_num, "fast");
+		move(row_num, col_num, 600);
 	});
 
+	$("#thumbs").children().children().hover(
+		function(){
+			$(this).css('opacity', 1.0)
+		}, 
+		function(){
+			$(this).css('opacity', 0.4)
+		});
 });
 
