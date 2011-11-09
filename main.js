@@ -38,8 +38,8 @@ $(document).ready(function() {
 	}).show();
 	
 	//set width and movement variables
-	var pic_width = $(window).width()/1.5;
-	var pic_height = $(window).height()/1.5;
+	var pic_width = $(window).width();
+	var pic_height = $(window).height();
 	
 	var margin = 5;
 	
