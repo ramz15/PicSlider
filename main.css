@@ -1,3 +1,7 @@
+body {
+  background-color: black;
+}
+
 #thumbs, #black_sheet {
 	position: fixed;
 	top: 20px;
@@ -16,6 +20,9 @@ img {
 	position: relative;
 	float: left;
 	display: inline-block;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
 }
 
 a img {

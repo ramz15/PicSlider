@@ -41,7 +41,7 @@ $(document).ready(function() {
 	var pic_width = $(window).width();
 	var pic_height = $(window).height();
 	
-	var margin = 5;
+	var margin = 25;
 	
 	var canvas_width = (cols * pic_width) + (cols*2*margin);
 	var canvas_height = (rows * pic_height) + (rows*2*margin);
@@ -79,12 +79,12 @@ $(document).ready(function() {
 	
 
   	$('#canvas').animate({ 
-  		top: -($new_top)
-  	}, speed);
+  		top: -($new_top + 40)
+  	}, speed).animate({top: -($new_top)}, "fast");
 
   	$('#canvas').animate({ 
-  		left: -($new_left)
-  	}, speed);
+  		left: -($new_left + 40)
+  	}, speed).animate({left: -($new_left)}, "fast");
 	
   	var index = coord_to_index(parseInt(end_row, 10), parseInt(end_col, 10) );
     $('#' + index).attr("src", "images/" + pic_array[index] );
