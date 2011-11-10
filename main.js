@@ -7,7 +7,7 @@ $(document).ready(function() {
 	
 	//plug blurry pics into canvas
 	for(pic in pic_array) {
-	$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + blur_array[pic] + "\">");
+	$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + thumb_array[pic] + "\">");
 	}
 	
 	//create buttons in appropriate positions
@@ -23,14 +23,15 @@ $(document).ready(function() {
 		}
 	}
 	
-	var button_width = 40;
-	var button_height = 30;
-	var button_container_width = button_width*cols;
-	var button_container_height = button_height*rows;
+	//set thumb
+	var thumb_width = 40;
+	var thumb_height = 30;
+	var button_container_width = thumb_width*cols;
+	var button_container_height = thumb_height*rows;
 	
 	$('#thumbs').children().children().css({
-		'width': button_width,
-		'height': button_height,
+		'width': thumb_width,
+		'height': thumb_height,
 		'display': 'inline-block',
 		'float': 'left'
 	});
@@ -41,8 +42,8 @@ $(document).ready(function() {
 	}).show();
 	
 	//set pic width and height, and set movement variables
-	var pic_width = $(window).width()-20;
-	var pic_height = $(window).height()-20;
+	var pic_width = $(window).width()-50;
+	var pic_height = $(window).height()-50;
 	
 	var margin = 25;
 	
@@ -77,34 +78,53 @@ $(document).ready(function() {
 
 	//swap a given photo for its focused counterpart; fade it in
 	function focus_current_img(index){
-		$('#' + index).attr("src", "images/" + pic_array[index]).fadeIn();
+		$('#' + index).attr("src", "images/" + pic_array[index]).fadeIn(1000);
 	}
 
 	//swap a given photo for its blurry counterpart
 	function blur_current_img(index){
-		$('#' + index).attr('src', "images/" + blur_array[index] );
+		$('#' + index).attr('src', "images/" + thumb_array[index] );
 	}
 
-
-  //generic move function
-  function move(end_row, end_col, speed){
-  	var $new_top = end_row*ud_mov;
-  	var $new_left = end_col*lr_mov;
-	
-
-  	$('#canvas').animate({ 
-  		top: -($new_top + 40)
-  	}, speed).animate({top: -($new_top)}, "fast");
-
-  	$('#canvas').animate({ 
-  		left: -($new_left + 40)
-  	}, speed).animate({left: -($new_left)}, "fast");
-	
-  	var index = coord_to_index(parseInt(end_row, 10), parseInt(end_col, 10) );	
-  }
-	
-	
+	var current_img_row = 0;
+	var current_img_col = 0;
 	var current_img_index = 0;
+	
+	//generic move function
+function move(start_row, start_col, end_row, end_col, speed){
+	var $new_top = end_row*ud_mov;
+	var $new_left = end_col*lr_mov;
+
+	//left to right
+	if(end_col > start_col){
+		$('#canvas').animate({ 
+			left: -($new_left + 40)
+		}, speed).animate({left: -($new_left)}, 400);
+	}
+	
+	//right to left
+	if(end_col < start_col){
+		$('#canvas').animate({ 
+			left: -($new_left - 40)
+		}, speed).animate({left: -($new_left)}, 400);
+	}
+
+	//top to bottom
+	if(end_row > start_row){
+		$('#canvas').animate({ 
+			top: -($new_top + 40)
+		}, speed).animate({top: -($new_top)}, 400);
+	}
+	
+	//bottom to top
+	if(end_row < start_row){
+		$('#canvas').animate({ 
+			top: -($new_top - 40)
+		}, speed).animate({top: -($new_top)}, 400);
+	}
+}
+	
+	var destination_index = 0;
 	
 	//call the move function on whatever thumb you click on 
 	$("#thumbs").children().click(function () {
@@ -113,14 +133,16 @@ $(document).ready(function() {
 		row_num = class_name.charAt(4);
 		//extract the col number
 		col_num = class_name.charAt(10);
+		//calculate the destination index
+		destination_index  = coord_to_index(parseInt(row_num), parseInt(col_num));
 		//move to the new img
-		move(row_num, col_num, 600);
+		move(current_img_row, current_img_col, row_num, col_num, 600);
 		//fade the previous img
 		blur_current_img(current_img_index);
 		//reset current img to the img we just moved to
-		current_img_index = coord_to_index(parseInt(row_num), parseInt(col_num));
-		//fade in the current img
-		focus_current_img(current_img_index);
+		current_img_row = parseInt(row_num);
+		current_img_col = parseInt(col_num);
+		current_img_index = coord_to_index(current_img_row, current_img_col);
 	});
 
 	$("#thumbs").children().children().hover(
