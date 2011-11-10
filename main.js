@@ -75,9 +75,9 @@ $(document).ready(function() {
 	  } 
 	}
 
-	//swap a given photo for its focused counterpart
+	//swap a given photo for its focused counterpart; fade it in
 	function focus_current_img(index){
-		$('#' + index).attr("src", "images/" + pic_array[index] );
+		$('#' + index).attr("src", "images/" + pic_array[index]).fadeIn();
 	}
 
 	//swap a given photo for its blurry counterpart
