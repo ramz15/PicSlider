@@ -37,11 +37,11 @@ $(document).ready(function() {
 		'height': button_container_height
 	}).show();
 	
-	//set width and movement variables
-	var pic_width = $(window).width();
-	var pic_height = $(window).height();
+	//set pic width and height, and set movement variables
+	var pic_width = $(window).width()-20;
+	var pic_height = $(window).height()-20;
 	
-	var margin = 5;
+	var margin = 10;
 	
 	var canvas_width = (cols * pic_width) + (cols*2*margin);
 	var canvas_height = (rows * pic_height) + (rows*2*margin);
@@ -57,8 +57,8 @@ $(document).ready(function() {
 	"margin": (margin + "px")
 	});
 	
-	var lr_mov = pic_width+(margin*2);
-	var ud_mov = pic_height+(margin*2); 
+	var lr_mov = pic_width+(margin*3);
+	var ud_mov = pic_height+(margin*3); 
 	
 	function coord_to_index(pic_row, pic_col) {
 	  var count = 0;
@@ -74,8 +74,8 @@ $(document).ready(function() {
 
   //generic move function
   function move(end_row, end_col, speed){
-  	var $new_top = end_row*pic_height;
-  	var $new_left = end_col*pic_width;
+  	var $new_top = end_row*lr_mov;
+  	var $new_left = end_col*ud_mov;
 	
 
   	$('#canvas').animate({ 

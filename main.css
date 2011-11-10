@@ -1,3 +1,6 @@
+body {
+	overflow:hidden;
+}
 #thumbs, #black_sheet {
 	position: fixed;
 	top: 20px;
