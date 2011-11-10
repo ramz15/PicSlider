@@ -20,8 +20,6 @@ $(document).ready(function() {
 		}
 	}
 	
-	
-
 	var button_width = 40;
 	var button_height = 30;
 	var button_container_width = button_width*cols;
@@ -79,6 +77,7 @@ $(document).ready(function() {
   	var $new_top = end_row*pic_height;
   	var $new_left = end_col*pic_width;
 	
+
   	$('#canvas').animate({ 
   		top: -($new_top)
   	}, speed);
@@ -89,15 +88,28 @@ $(document).ready(function() {
 	
   	var index = coord_to_index(parseInt(end_row, 10), parseInt(end_col, 10) );
     $('#' + index).attr("src", "images/" + pic_array[index] );
-	  
-	  $('#' + index).attr("src", "images/" + thumb_array[index] );
+	
   }
 	
+	function fade_current_img(index){
+		$('#' + index).attr('src', "images/" + thumb_array[index] );
+	}
+	
+	var current_img_index = 0;
+	
+	//call the move function on whatever thumb you click on 
 	$("#thumbs").children().click(function () {
 		var class_name = $(this).children().attr('class');
+		//extract the row number
 		row_num = class_name.charAt(4);
+		//extract the col number
 		col_num = class_name.charAt(10);
+		//move to the new img
 		move(row_num, col_num, 600);
+		//fade the previous img
+		fade_current_img(current_img_index);
+		//reset current img to the img we just moved to
+		current_img_index = coord_to_index(parseInt(row_num), parseInt(col_num));
 	});
 
 	$("#thumbs").children().children().hover(
