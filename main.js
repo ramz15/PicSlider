@@ -90,37 +90,53 @@ $(document).ready(function() {
 	var current_img_col = 0;
 	var current_img_index = 0;
 	
+	
 	//generic move function
 function move(start_row, start_col, end_row, end_col, speed){
 	var $new_top = end_row*ud_mov;
 	var $new_left = end_col*lr_mov;
-
+	
+	var total_moves = 0;
+	if (end_row != start_row)
+		total_moves++;
+	if (end_col != start_col)
+		total_moves++;
+		
+	var moves_completed = 0;
+	
+	function focus_if_done() {
+		moves_completed++;
+		if(moves_completed === total_moves){
+			focus_current_img(destination_index);
+		}
+	}	
+	
 	//left to right
 	if(end_col > start_col){
 		$('#canvas').animate({ 
 			left: -($new_left + 40)
-		}, speed).animate({left: -($new_left)}, 400);
+		}, speed).animate({left: -($new_left)}, 400, focus_if_done)
 	}
 	
 	//right to left
 	if(end_col < start_col){
 		$('#canvas').animate({ 
 			left: -($new_left - 40)
-		}, speed).animate({left: -($new_left)}, 400);
+		}, speed).animate({left: -($new_left)}, 400, focus_if_done);
 	}
 
 	//top to bottom
 	if(end_row > start_row){
 		$('#canvas').animate({ 
 			top: -($new_top + 40)
-		}, speed).animate({top: -($new_top)}, 400);
+		}, speed).animate({top: -($new_top)}, 400, focus_if_done);
 	}
 	
 	//bottom to top
 	if(end_row < start_row){
 		$('#canvas').animate({ 
 			top: -($new_top - 40)
-		}, speed).animate({top: -($new_top)}, 400);
+		}, speed).animate({top: -($new_top)}, 400, focus_if_done);
 	}
 }
 	
