@@ -114,29 +114,29 @@ function move(start_row, start_col, end_row, end_col, speed){
 	//left to right
 	if(end_col > start_col){
 		$('#canvas').animate({ 
-			left: -($new_left + 40)
-		}, speed).animate({left: -($new_left)}, 400, focus_if_done)
+			left: -($new_left + 100)
+		}, speed).animate({left: -($new_left)}, 300, focus_if_done)
 	}
 	
 	//right to left
 	if(end_col < start_col){
 		$('#canvas').animate({ 
-			left: -($new_left - 40)
-		}, speed).animate({left: -($new_left)}, 400, focus_if_done);
+			left: -($new_left - 100)
+		}, speed).animate({left: -($new_left)}, 300, focus_if_done);
 	}
 
 	//top to bottom
 	if(end_row > start_row){
 		$('#canvas').animate({ 
-			top: -($new_top + 40)
-		}, speed).animate({top: -($new_top)}, 400, focus_if_done);
+			top: -($new_top + 100)
+		}, speed).animate({top: -($new_top)}, 300, focus_if_done);
 	}
 	
 	//bottom to top
 	if(end_row < start_row){
 		$('#canvas').animate({ 
-			top: -($new_top - 40)
-		}, speed).animate({top: -($new_top)}, 400, focus_if_done);
+			top: -($new_top - 100)
+		}, speed).animate({top: -($new_top)}, 300, focus_if_done);
 	}
 }
 	
@@ -152,7 +152,7 @@ function move(start_row, start_col, end_row, end_col, speed){
 		//calculate the destination index
 		destination_index  = coord_to_index(parseInt(row_num), parseInt(col_num));
 		//move to the new img
-		move(current_img_row, current_img_col, row_num, col_num, 600);
+		move(current_img_row, current_img_col, row_num, col_num, 300);
 		//fade the previous img
 		blur_current_img(current_img_index);
 		//reset current img to the img we just moved to
