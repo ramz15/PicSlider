@@ -1,18 +1,18 @@
 $(document).ready(function() {
 	
 	//plug in pics into DOM
-	var pic_array = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", "6.JPG"];
-	var thumb_array = ["1_thumb.JPG", "2_thumb.JPG", "3_thumb.JPG", "4_thumb.JPG", "5_thumb.JPG", "6_thumb.JPG"];
-	var blur_array = ["1_blur.JPG", "2_blur.JPG", "3_blur.JPG", "4_blur.JPG", "5_blur.JPG", "6_blur.JPG"];
+	var pic_array = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", "6.JPG", "7.JPG", "8.JPG", "9.JPG"];
+	var thumb_array = ["1_thumb.JPG", "2_thumb.JPG", "3_thumb.JPG", "4_thumb.JPG", "5_thumb.JPG", "6_thumb.JPG", "7_thumb.JPG", "8_thumb.JPG", "9_thumb.JPG"];
+	var blur_array = ["1_blur.JPG", "2_blur.JPG", "3_blur.JPG", "4_blur.JPG", "5_blur.JPG", "6_blur.JPG", "7_blur.JPG", "8_blur.JPG", "9_blur.JPG"];
 	
 	//plug blurry pics into canvas
 	for(pic in pic_array) {
-	$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + thumb_array[pic] + "\">");
+	$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + blur_array[pic] + "\">");
 	}
 	
 	//create buttons in appropriate positions
 	var rows = 3;
-	var cols = 2;
+	var cols = 3;
 	var count = 0; 
 	
 	//put thumbnails in thumbnail container
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 	//swap a given photo for its blurry counterpart
 	function blur_current_img(index){
-		$('#' + index).attr('src', "images/" + thumb_array[index] );
+		$('#' + index).attr('src', "images/" + blur_array[index] );
 	}
 
 	var current_img_row = 0;
