@@ -1,22 +1,8 @@
-body {
-	overflow:hidden;
-  	background-color: black;
-}
-
 .picScrollerCanvas {
 	position: absolute;
 	top:0px;
 	left:0px;
 	overflow:none;
-}
-
-img {
-	position: relative;
-	float: left;
-	display: inline-block;
-	border-radius: 15px;
-	-moz-border-radius: 15px;
-  	-webkit-border-radius: 15px;
 }
 
 a img {

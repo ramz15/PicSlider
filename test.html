@@ -1,23 +1,42 @@
 <html>
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-  <script src="plugin.js"></script>
+  <script src="./jquery.picslider.js"></script>
   <script>
 	$(document).ready(function() {
 		$('#button').click(function() {
-			$('#test').picScroller({
+			$('#test').picSlider({
 				'pic_array': ["images/1.JPG", "images/2.JPG", "images/3.JPG", "images/4.JPG", "images/5.JPG", "images/6.JPG", "images/7.JPG", "images/8.JPG", "images/9.JPG"],
 				'thumb_array': ["images/1_thumb.JPG", "images/2_thumb.JPG", "images/3_thumb.JPG", "images/4_thumb.JPG", "images/5_thumb.JPG", "images/6_thumb.JPG", "images/7_thumb.JPG", "images/8_thumb.JPG", "images/9_thumb.JPG"],
 				'blur_array': ["images/1_blur.JPG", "images/2_blur.JPG", "images/3_blur.JPG", "images/4_blur.JPG", "images/5_blur.JPG", "images/6_blur.JPG", "images/7_blur.JPG", "images/8_blur.JPG", "images/9_blur.JPG"],
 			});
+			$(this).hide();
 		});
 	});
   </script>
   <link rel="stylesheet" href="main.css" />
+  <style type="text/css">
+	#button {
+		z-index:50;
+		position:absolute;
+		top:10px;
+		left:10px;
+	}
+</style>
 
 </head>
 <body>
-	<div id="test"></div>
-	<button id="button"></button>
+	<div id="test">
+		<img src="images/1.JPG"/>
+		<img src="images/2.JPG"/>
+		<img src="images/3.JPG"/>
+		<img src="images/4.JPG"/>
+		<img src="images/5.JPG"/>
+		<img src="images/6.JPG"/>
+		<img src="images/7.JPG"/>
+		<img src="images/8.JPG"/>
+		<img src="images/9.JPG"/>
+	</div>
+	<button id="button">Activate Pic Slider</button>
 </body>
 </html>
