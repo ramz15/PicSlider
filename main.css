@@ -29,3 +29,13 @@ img {
 a img {
 	opacity: 0.4;
 }
+
+.highlight {
+	opacity: 1.0;
+}
+
+.active {
+	opacity: 1.0;
+}
+
+

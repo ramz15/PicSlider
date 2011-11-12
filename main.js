@@ -5,10 +5,26 @@ $(document).ready(function() {
 	var thumb_array = ["1_thumb.JPG", "2_thumb.JPG", "3_thumb.JPG", "4_thumb.JPG", "5_thumb.JPG", "6_thumb.JPG"];
 	var blur_array = ["1_blur.JPG", "2_blur.JPG", "3_blur.JPG", "4_blur.JPG", "5_blur.JPG", "6_blur.JPG"];
 	
+	// var pic_array = []
+
+	
 	//plug blurry pics into canvas
 	for(pic in pic_array) {
-	$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + thumb_array[pic] + "\">");
+		if(pic == 0) 
+			$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + pic_array[pic] + "\">");
+		else 
+			$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + thumb_array[pic] + "\">");
 	}
+	
+	var test_array = [];
+	
+	var pics = $('#canvas').children('img');
+	
+	for(var i = 0; i < pics.length; i++) {
+		test_array.push(($(pics[i]).attr('src')));
+	}
+	
+	console.log(test_array);
 	
 	//create buttons in appropriate positions
 	var rows = 3;
@@ -144,6 +160,10 @@ function move(start_row, start_col, end_row, end_col, speed){
 	
 	//call the move function on whatever thumb you click on 
 	$("#thumbs").children().click(function () {
+		//deactivate the previous active element
+		$('.active').removeClass('active');
+		//activate this element
+		$(this).children().addClass('active');
 		var class_name = $(this).children().attr('class');
 		//extract the row number
 		row_num = class_name.charAt(4);
@@ -160,13 +180,14 @@ function move(start_row, start_col, end_row, end_col, speed){
 		current_img_col = parseInt(col_num);
 		current_img_index = coord_to_index(current_img_row, current_img_col);
 	});
-
+	
+	//temporary highlighting within the control panel 
 	$("#thumbs").children().children().hover(
 		function(){
-			$(this).css('opacity', 1.0)
+			$(this).addClass('highlight');
 		}, 
 		function(){
-			$(this).css('opacity', 0.4)
+			$(this).removeClass('highlight');
 		});
 });
 
