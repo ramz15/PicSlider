@@ -3,7 +3,7 @@ body {
   	background-color: black;
 }
 
-.canvas {
+.picScrollerCanvas {
 	position: absolute;
 	top:0px;
 	left:0px;
@@ -23,11 +23,11 @@ a img {
 	opacity: 0.4;
 }
 
-.highlight {
+.picScrollerHighlight {
 	opacity: 1.0;
 }
 
-.active {
+.picScrollerActive {
 	opacity: 1.0;
 }
 

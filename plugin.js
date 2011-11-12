@@ -76,7 +76,6 @@
 
 	$.fn.picScroller = function(options) {
 		
-		
 		//take in a row and column, output the index in the array
 		function coord_to_index(pic_row, pic_col) {
 		  var count = 0;
@@ -122,28 +121,28 @@
 
 			//left to right
 			if(end_col > start_col){
-				$('.canvas').animate({ 
+				$('.picScrollerCanvas').animate({ 
 					left: -($new_left + 100)
 				}, speed).animate({left: -($new_left)}, 300, focus_if_done)
 			}
 
 			//right to left
 			if(end_col < start_col){
-				$('.canvas').animate({ 
+				$('.picScrollerCanvas').animate({ 
 					left: -($new_left - 100)
 				}, speed).animate({left: -($new_left)}, 300, focus_if_done);
 			}
 
 			//top to bottom
 			if(end_row > start_row){
-				$('.canvas').animate({ 
+				$('.picScrollerCanvas').animate({ 
 					top: -($new_top + 100)
 				}, speed).animate({top: -($new_top)}, 300, focus_if_done);
 			}
 
 			//bottom to top
 			if(end_row < start_row){
-				$('.canvas').animate({ 
+				$('.picScrollerCanvas').animate({ 
 					top: -($new_top - 100)
 				}, speed).animate({top: -($new_top)}, 300, focus_if_done);
 			}
@@ -154,7 +153,7 @@
 		//     }, options)
 			
 			//give the selected container a "canvas" class, so that we can identify it in css and js
-			this.addClass("canvas");
+			this.addClass("picScrollerCanvas");
 			
 			//plug pics into canvas; all but first pic should be blurry
 			for(pic in options.pic_array) {
@@ -165,7 +164,7 @@
 			}
 			
 			//create a thumbnail container within the main container 
-			this.after("<div class='thumbs'></div>");
+			this.after("<div class='picScrollerThumbs'></div>");
 
 			//calculate the number of rows, given the user's choice of columns (default is 3 cols)
 			var cols = 3;
@@ -175,7 +174,7 @@
 			//put thumbnails in thumbnail container
 			for(i=0; i<rows; i++){
 				for(j=0; j<cols; j++){
-					$('.thumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + options.thumb_array[count] + "\" /></a>").hide();
+					$('.picScrollerThumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + options.thumb_array[count] + "\" /></a>").hide();
 					count += 1
 				}
 			}
@@ -186,14 +185,14 @@
 			var button_container_width = thumb_width*cols;
 			var button_container_height = thumb_height*rows;
 
-			$('.thumbs').children().children().css({
+			$('.picScrollerThumbs').children().children().css({
 				'width': thumb_width,
 				'height': thumb_height,
 				'display': 'inline-block',
 				'float': 'left'
 			});
 
-			$('.thumbs').css({
+			$('.picScrollerThumbs').css({
 				'width': button_container_width,
 				'height': button_container_height,
 				'position': 'fixed',
@@ -236,11 +235,11 @@
 			var destination_index = 0;
 
 			//call the move function on whatever thumb you click on 
-			$(".thumbs").children().click(function () {
+			$(".picScrollerThumbs").children().click(function () {
 				//deactivate the previous active element
-				$('.active').removeClass('active');
+				$('.picScrollerActive').removeClass('picScrollerActive');
 				//activate this element
-				$(this).children().addClass('active');
+				$(this).children().addClass('picScrollerActive');
 				var class_name = $(this).children().attr('class');
 				//extract the row number
 				row_num = class_name.charAt(4);
@@ -259,12 +258,12 @@
 			});
 
 			//temporary highlighting within the control panel 
-			$(".thumbs").children().children().hover(
+			$(".picScrollerThumbs").children().children().hover(
 				function(){
-					$(this).addClass('highlight');
+					$(this).addClass('picScrollerHighlight');
 				}, 
 				function(){
-					$(this).removeClass('highlight');
+					$(this).removeClass('picScrollerHighlight');
 			});
 		
 	
