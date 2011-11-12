@@ -1,17 +1,27 @@
 $(document).ready(function() {
 	
+	var pic_array = [];
+
+	//grab each pic within the canvas
+	var pics = $('#canvas').children('img');
+	
+	//remove each pic from the canvas
+	 $('#canvas').children('img').remove();
+	
+	//add the pic to the pic_array
+	for(var i = 0; i < pics.length; i++) {
+		pic_array.push(($(pics[i]).attr('src')));
+	}
+	
 	//plug in pics into DOM
-	var pic_array = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", "6.JPG", "7.JPG", "8.JPG", "9.JPG"];
+	// var pic_array = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", "6.JPG", "7.JPG", "8.JPG", "9.JPG"];
 	var thumb_array = ["1_thumb.JPG", "2_thumb.JPG", "3_thumb.JPG", "4_thumb.JPG", "5_thumb.JPG", "6_thumb.JPG", "7_thumb.JPG", "8_thumb.JPG", "9_thumb.JPG"];
 	var blur_array = ["1_blur.JPG", "2_blur.JPG", "3_blur.JPG", "4_blur.JPG", "5_blur.JPG", "6_blur.JPG", "7_blur.JPG", "8_blur.JPG", "9_blur.JPG"];
-	
-	// var pic_array = []
 
-	
 	//plug blurry pics into canvas
 	for(pic in pic_array) {
 		if(pic == 0) 
-			$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + pic_array[pic] + "\">");
+			$("#canvas").append("<img id=\"" + pic + "\" src=\"" + pic_array[pic] + "\">");
 		else 
 			$("#canvas").append("<img id=\"" + pic + "\" src=\"images/" + blur_array[pic] + "\">");
 	}
@@ -94,7 +104,7 @@ $(document).ready(function() {
 
 	//swap a given photo for its focused counterpart; fade it in
 	function focus_current_img(index){
-		$('#' + index).attr("src", "images/" + pic_array[index]).fadeIn(1000);
+		$('#' + index).attr("src", "" + pic_array[index]).fadeIn(1000);
 	}
 
 	//swap a given photo for its blurry counterpart
