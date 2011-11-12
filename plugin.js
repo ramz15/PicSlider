@@ -1,8 +1,84 @@
 (function( $ ) {
 	
-	var methods = {
-	 	//take in a row and column, output the index in the array
-		coord_to_index : function(pic_row, pic_col) {
+	// var methods = {
+	//  	//take in a row and column, output the index in the array
+	// 	coord_to_index : function(pic_row, pic_col) {
+	// 	  var count = 0;
+	// 	  for (i=0; i<rows; i++) {
+	// 	    for (j=0; j<cols; j++) {
+	// 	      if (i===pic_row && j===pic_col)
+	// 	        return count;
+	// 	      else
+	// 	        count++;
+	// 	    }   
+	// 	  } 
+	// 	},
+	// 
+	// 	//swap a given photo for its focused counterpart; fade it in
+	// 	focus_current_img: function(index){
+	// 		$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(1000);
+	// 	},
+	// 
+	// 	//swap a given photo for its blurry counterpart
+	// 	blur_current_img: function(index) {
+	// 		$('#' + index).attr('src', "images/" + options.blur_array[index] );
+	// 	},
+	// 
+	// 	//move the canvas from a starting location to an ending location, at a certain speed
+	// 	move: function(start_row, start_col, end_row, end_col, speed){
+	// 		var $new_top = end_row*ud_mov;
+	// 		var $new_left = end_col*lr_mov;
+	// 
+	// 		var total_moves = 0;
+	// 		if (end_row != start_row)
+	// 			total_moves++;
+	// 		if (end_col != start_col)
+	// 			total_moves++;
+	// 
+	// 		var moves_completed = 0;
+	// 
+	// 		function focus_if_done() {
+	// 			moves_completed++;
+	// 			if(moves_completed === total_moves){
+	// 				methods[focus_current_img](destination_index);
+	// 			}
+	// 		}
+	// 
+	// 		//left to right
+	// 		if(end_col > start_col){
+	// 			$('#canvas').animate({ 
+	// 				left: -($new_left + 100)
+	// 			}, speed).animate({left: -($new_left)}, 300, focus_if_done)
+	// 		}
+	// 
+	// 		//right to left
+	// 		if(end_col < start_col){
+	// 			$('#canvas').animate({ 
+	// 				left: -($new_left - 100)
+	// 			}, speed).animate({left: -($new_left)}, 300, focus_if_done);
+	// 		}
+	// 
+	// 		//top to bottom
+	// 		if(end_row > start_row){
+	// 			$('#canvas').animate({ 
+	// 				top: -($new_top + 100)
+	// 			}, speed).animate({top: -($new_top)}, 300, focus_if_done);
+	// 		}
+	// 
+	// 		//bottom to top
+	// 		if(end_row < start_row){
+	// 			$('#canvas').animate({ 
+	// 				top: -($new_top - 100)
+	// 			}, speed).animate({top: -($new_top)}, 300, focus_if_done);
+	// 		}
+	// 	}
+	// };
+
+	$.fn.picScroller = function(options) {
+		
+		
+		//take in a row and column, output the index in the array
+		function coord_to_index(pic_row, pic_col) {
 		  var count = 0;
 		  for (i=0; i<rows; i++) {
 		    for (j=0; j<cols; j++) {
@@ -12,20 +88,20 @@
 		        count++;
 		    }   
 		  } 
-		},
-	
+		}
+
 		//swap a given photo for its focused counterpart; fade it in
-		focus_current_img: function(index){
+		function focus_current_img(index){
 			$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(1000);
-		},
+		}
 
 		//swap a given photo for its blurry counterpart
-		blur_current_img: function(index) {
-			$('#' + index).attr('src', "images/" + options.blur_array[index] );
-		},
+		function blur_current_img(index){
+			$('#' + index).attr('src', options.blur_array[index] );
+		}
 
 		//move the canvas from a starting location to an ending location, at a certain speed
-		move: function(start_row, start_col, end_row, end_col, speed){
+		function move(start_row, start_col, end_row, end_col, speed){
 			var $new_top = end_row*ud_mov;
 			var $new_left = end_col*lr_mov;
 
@@ -40,47 +116,44 @@
 			function focus_if_done() {
 				moves_completed++;
 				if(moves_completed === total_moves){
-					methods[focus_current_img](destination_index);
+					focus_current_img(destination_index);
 				}
-			}
+			}	
 
 			//left to right
 			if(end_col > start_col){
-				$('#canvas').animate({ 
+				$('.canvas').animate({ 
 					left: -($new_left + 100)
 				}, speed).animate({left: -($new_left)}, 300, focus_if_done)
 			}
 
 			//right to left
 			if(end_col < start_col){
-				$('#canvas').animate({ 
+				$('.canvas').animate({ 
 					left: -($new_left - 100)
 				}, speed).animate({left: -($new_left)}, 300, focus_if_done);
 			}
 
 			//top to bottom
 			if(end_row > start_row){
-				$('#canvas').animate({ 
+				$('.canvas').animate({ 
 					top: -($new_top + 100)
 				}, speed).animate({top: -($new_top)}, 300, focus_if_done);
 			}
 
 			//bottom to top
 			if(end_row < start_row){
-				$('#canvas').animate({ 
+				$('.canvas').animate({ 
 					top: -($new_top - 100)
 				}, speed).animate({top: -($new_top)}, 300, focus_if_done);
 			}
-		}
-	};
-
-	$.fn.picScroller = function(options) {
+		}	
 		
 		// var settings = $.extend( {
 		//       'cols'         : '3',
 		//     }, options)
 			
-			//give the selected container a "canvas" class, so that we can identify it in css
+			//give the selected container a "canvas" class, so that we can identify it in css and js
 			this.addClass("canvas");
 			
 			//plug pics into canvas; all but first pic should be blurry
@@ -174,15 +247,15 @@
 				//extract the col number
 				col_num = class_name.charAt(10);
 				//calculate the destination index
-				destination_index  = methods[coord_to_index](parseInt(row_num), parseInt(col_num));
+				destination_index  = coord_to_index(parseInt(row_num), parseInt(col_num));
 				//move to the new img
-				methods[move](current_img_row, current_img_col, row_num, col_num, 300);
+				move(current_img_row, current_img_col, row_num, col_num, 300);
 				//fade the previous img
-				methods[blur_current_img](current_img_index);
+				blur_current_img(current_img_index);
 				//reset current img to the img we just moved to
 				current_img_row = parseInt(row_num);
 				current_img_col = parseInt(col_num);
-				current_img_index = methods[coord_to_index](current_img_row, current_img_col);
+				current_img_index = coord_to_index(current_img_row, current_img_col);
 			});
 
 			//temporary highlighting within the control panel 
