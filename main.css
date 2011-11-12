@@ -3,14 +3,7 @@ body {
   	background-color: black;
 }
 
-#thumbs, #black_sheet {
-	position: fixed;
-	top: 30px;
-	right: 30px;
-	z-index: 10;
-}
-
-#canvas {
+.canvas {
 	position: absolute;
 	top:0px;
 	left:0px;
@@ -23,7 +16,7 @@ img {
 	display: inline-block;
 	border-radius: 15px;
 	-moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
+  	-webkit-border-radius: 15px;
 }
 
 a img {

@@ -1,0 +1,23 @@
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script src="plugin.js"></script>
+  <script>
+	$(document).ready(function() {
+		$('#button').click(function() {
+			$('#test').picScroller({
+				'pic_array': ["images/1.JPG", "images/2.JPG", "images/3.JPG", "images/4.JPG", "images/5.JPG", "images/6.JPG", "images/7.JPG", "images/8.JPG", "images/9.JPG"],
+				'thumb_array': ["images/1_thumb.JPG", "images/2_thumb.JPG", "images/3_thumb.JPG", "images/4_thumb.JPG", "images/5_thumb.JPG", "images/6_thumb.JPG", "images/7_thumb.JPG", "images/8_thumb.JPG", "images/9_thumb.JPG"],
+				'blur_array': ["images/1_blur.JPG", "images/2_blur.JPG", "images/3_blur.JPG", "images/4_blur.JPG", "images/5_blur.JPG", "images/6_blur.JPG", "images/7_blur.JPG", "images/8_blur.JPG", "images/9_blur.JPG"],
+			});
+		});
+	});
+  </script>
+  <link rel="stylesheet" href="main.css" />
+
+</head>
+<body>
+	<div id="test"></div>
+	<button id="button"></button>
+</body>
+</html>
