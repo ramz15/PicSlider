@@ -71,8 +71,9 @@
 				}
 			}	
 			
-			var overshoot = 100;
-			var duration = 300;
+			var overshoot = 120;
+			var duration = 450;
+			
 			//left to right
 			if(end_col > start_col){
 				$('.picScrollerCanvas').animate({ 
@@ -87,7 +88,7 @@
 				}, speed).animate({left: -($new_left)}, duration, focus_if_done);
 			}
 
-			// //top to bottom
+			//top to bottom
 			if(end_row > start_row){
 				$('.picScrollerCanvas').animate({ 
 					top: -($new_top + overshoot)
@@ -217,7 +218,7 @@
 				destination_index  = coord_to_index(parseInt(row_num), parseInt(col_num));
 
 				//move to the new img
-				move(current_img_row, current_img_col, row_num, col_num, 300);
+				move(current_img_row, current_img_col, row_num, col_num, 350);
 
 				//fade the previous img
 				blur_current_img(current_img_index);
