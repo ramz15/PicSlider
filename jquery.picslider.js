@@ -37,8 +37,7 @@
 			//"z-index": 2,
 			"position": "absolute",
 			});
-			
-			
+				
 			//$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(3000);
 		}
 
