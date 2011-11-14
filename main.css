@@ -37,7 +37,7 @@ img {
   z-index: 10;
 }
 
-.picSliderBlur, .picSliderClear {
+.picSliderBlur, .picSliderFirst {
   float: left;
   position: relative;
   z-index: 1;

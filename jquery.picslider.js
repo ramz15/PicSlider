@@ -18,13 +18,27 @@
 		}
 
 		//swap a given photo for its focused counterpart; fade it in
-		function focus_current_img(index){
-			$('#' + index).after("<img class=\"picSliderClear\" src=\"" + options.pic_array[index] + "\">").fadeIn(3000);
+		function focus_current_img(index){		  
+		  $(".picSliderClear").remove();
+		  
+			$('#' + index).after("<img class=\"picSliderClear\" src=\"" + options.pic_array[index] + "\">");
+			
+			$(".picSliderClear").hide().fadeIn(800);
+			
+			var clear_top = parseInt($(".picScrollerCanvas").css("top"))*-1;
+			var clear_left = parseInt($(".picScrollerCanvas").css("left"))*-1;
+			
 			$(".picSliderClear").css({
 			"width": pic_width,
 			"height": pic_height,
 			"margin": (margin + "px"),
+			"top": clear_top,
+			"left": clear_left,
+			//"z-index": 2,
+			"position": "absolute",
 			});
+			
+			
 			//$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(3000);
 		}
 
@@ -96,7 +110,7 @@
 			//plug pics into canvas; all but first pic should be blurry
 			for(pic in options.pic_array) {
 				if(pic == 0) 
-					this.html("<img id=\"" + pic + "\" class=\"picSliderClear\" src=\"" + options.pic_array[pic] + "\">");
+					this.html("<img id=\"" + pic + "\" class=\"picSliderFirst\" src=\"" + options.pic_array[pic] + "\">");
 				else 
 					this.append("<img id=\"" + pic + "\" class=\"picSliderBlur\" src=\"" + options.blur_array[pic] + "\">");
 			}
