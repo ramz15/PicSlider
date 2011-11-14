@@ -4,7 +4,7 @@
 
 - - -
 
-[website](http://kgcreations.org/PicSlider/)
+[KGCreations: PicSlider](http://kgcreations.org/PicSlider/)
 
 - - -
 
