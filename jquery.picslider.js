@@ -17,7 +17,13 @@
 
 		//swap a given photo for its focused counterpart; fade it in
 		function focus_current_img(index){
-			$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(1000);
+			$('#' + index).after("<img class=\"picSliderClear\" src=\"" + options.pic_array[index] + "\">").fadeIn(3000);
+			$(".picSliderClear").css({
+			"width": pic_width,
+			"height": pic_height,
+			"margin": (margin + "px"),
+			});
+			//$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(3000);
 		}
 
 		//swap a given photo for its blurry counterpart
@@ -84,9 +90,9 @@
 			//plug pics into canvas; all but first pic should be blurry
 			for(pic in options.pic_array) {
 				if(pic == 0) 
-					this.html("<img id=\"" + pic + "\" src=\"" + options.pic_array[pic] + "\">");
+					this.html("<img id=\"" + pic + "\" class=\"picSliderClear\" src=\"" + options.pic_array[pic] + "\">");
 				else 
-					this.append("<img id=\"" + pic + "\" src=\"" + options.blur_array[pic] + "\">");
+					this.append("<img id=\"" + pic + "\" class=\"picSliderBlur\" src=\"" + options.blur_array[pic] + "\">");
 			}
 			
 			//create a thumbnail container within the main container 
@@ -112,20 +118,6 @@
 			var button_container_height = thumb_height*rows;
 			
 			//set css properties for each element
-			$('body').css({
-				'overflow':'hidden',
-			  	'background-color': 'black'
-			});
-			
-			$('img').css({
-				'position': 'relative',
-				'float': 'left',
-				'display': 'inline-block',
-				'border-radius': '15px',
-				'-moz-border-radius': '15px',
-			  	'webkit-border-radius': '15px'
-			});
-			
 			$('.picScrollerThumbs').children().children().css({
 				'width': thumb_width,
 				'height': thumb_height,

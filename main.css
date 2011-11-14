@@ -17,4 +17,28 @@ a img {
 	opacity: 1.0;
 }
 
+body {
+	overflow: hidden;
+  background-color: black;
+}
 
+img {
+	/*position: relative;*/
+/*  float: left;*/
+	display: inline-block;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+  webkit-border-radius: 15px;
+  z-index: 1;
+}
+
+.picSliderFade {
+  position: absolute;
+  z-index: 10;
+}
+
+.picSliderBlur, .picSliderClear {
+  float: left;
+  position: relative;
+  z-index: 1;
+}
