@@ -19,13 +19,7 @@
 
 		//swap a given photo for its focused counterpart; fade it in
 		function focus_current_img(index){
-			$('#' + index).after("<img class=\"picSliderClear\" src=\"" + options.pic_array[index] + "\">").fadeIn(3000);
-			$(".picSliderClear").css({
-			"width": pic_width,
-			"height": pic_height,
-			"margin": (margin + "px"),
-			});
-			//$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(3000);
+			$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(200);
 		}
 
 		//swap a given photo for its blurry counterpart
@@ -61,28 +55,28 @@
 			var duration = 300;
 			//left to right
 			if(end_col > start_col){
-				$('.picScrollerCanvas').animate({ 
+				$('.picSliderCanvas').animate({ 
 					left: -($new_left + overshoot)
 				}, speed).animate({left: -($new_left)}, duration, focus_if_done)
 			}
 
 			//right to left
 			if(end_col < start_col){
-				$('.picScrollerCanvas').animate({ 
+				$('.picSliderCanvas').animate({ 
 					left: -($new_left - overshoot)
 				}, speed).animate({left: -($new_left)}, duration, focus_if_done);
 			}
 
 			// //top to bottom
 			if(end_row > start_row){
-				$('.picScrollerCanvas').animate({ 
+				$('.picSliderCanvas').animate({ 
 					top: -($new_top + overshoot)
 				}, speed).animate({top: -($new_top)}, duration, focus_if_done);
 			}
 
 			//bottom to top
 			if(end_row < start_row){
-				$('.picScrollerCanvas').animate({ 
+				$('.picSliderCanvas').animate({ 
 					top: -($new_top - overshoot)
 				}, speed).animate({top: -($new_top)}, duration, focus_if_done);
 			}
@@ -91,18 +85,18 @@
 		//FUNCTION LIST ENDS HERE//	
 			
 			//give the selected container a "canvas" class, so that we can identify it in css and js
-			this.addClass("picScrollerCanvas");
+			this.addClass("picSliderCanvas");
 			
 			//plug pics into canvas; all but first pic should be blurry
 			for(pic in options.pic_array) {
 				if(pic == 0) 
-					this.html("<img id=\"" + pic + "\" class=\"picSliderClear\" src=\"" + options.pic_array[pic] + "\">");
+					this.html("<img id=\"" + pic + "\" src=\"" + options.pic_array[pic] + "\">");
 				else 
-					this.append("<img id=\"" + pic + "\" class=\"picSliderBlur\" src=\"" + options.blur_array[pic] + "\">");
+					this.append("<img id=\"" + pic + "\" src=\"" + options.blur_array[pic] + "\">");
 			}
 			
 			//create a thumbnail container within the main container 
-			this.after("<div class='picScrollerThumbs'></div>");
+			this.after("<div class='picSliderThumbs'></div>");
 
 			//calculate the number of rows, given the user's choice of columns (default is 3 cols)
 			if(options.columns === undefined)
@@ -115,7 +109,7 @@
 			//put thumbnails in thumbnail container
 			for(i=0; i<rows; i++){
 				for(j=0; j<cols; j++){
-					$('.picScrollerThumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + options.thumb_array[count] + "\" /></a>").hide();
+					$('.picSliderThumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + options.thumb_array[count] + "\" /></a>").hide();
 					count += 1
 				}
 			}
@@ -127,14 +121,28 @@
 			var button_container_height = thumb_height*rows;
 			
 			//set css properties for each element
-			$('.picScrollerThumbs').children().children().css({
+			$('body').css({
+				'overflow':'hidden',
+			  	'background-color': 'black'
+			});
+			
+			$('img').css({
+				'position': 'relative',
+				'float': 'left',
+				'display': 'inline-block',
+				'border-radius': '15px',
+				'-moz-border-radius': '15px',
+			  	'webkit-border-radius': '15px'
+			});
+			
+			$('.picSliderThumbs').children().children().css({
 				'width': thumb_width,
 				'height': thumb_height,
 				'display': 'inline-block',
 				'float': 'left'
 			});
 
-			$('.picScrollerThumbs').css({
+			$('.picSliderThumbs').css({
 				'width': button_container_width,
 				'height': button_container_height,
 				'position': 'fixed',
@@ -144,12 +152,12 @@
 			}).show();
 
 			//for temporary highlighting within the control panel 
-			$(".picScrollerThumbs").children().children().hover(
+			$(".picSliderThumbs").children().children().hover(
 				function(){
-					$(this).addClass('picScrollerHighlight');
+					$(this).addClass('picSliderHighlight');
 				}, 
 				function(){
-					$(this).removeClass('picScrollerHighlight');
+					$(this).removeClass('picSliderHighlight');
 			});
 
 			//set pic width and height
@@ -185,12 +193,12 @@
 			var destination_index = 0;
 
 			//call the move function on whatever thumb you click on 
-			$(".picScrollerThumbs").children().click(function () {
+			$(".picSliderThumbs").children().click(function () {
 				//deactivate the previous active element
-				$('.picScrollerActive').removeClass('picScrollerActive');
+				$('.picSliderActive').removeClass('picSliderActive');
 
 				//activate this element
-				$(this).children().addClass('picScrollerActive');
+				$(this).children().addClass('picSliderActive');
 				var class_name = $(this).children().attr('class');
 
 				//extract the row number

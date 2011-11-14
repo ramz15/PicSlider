@@ -72,7 +72,6 @@ $(document).ready(function() {
 		}
 	}	
 	
-	
 	var pic_array = [];
 
 	//grab each pic within the canvas
