@@ -5,7 +5,7 @@
 	//LIST FUNCTIONS HERE//
 	
     //Load images for caching. Images are removed on first click.
-    for(i=0; i<options.pic_array.length; i++){
+    for(i=0; i<focused_array.length; i++){
           $('#test').after("<img class=\"tempImages\" src=\"" + options.pic_array[i] + "\">");
           $('.tempImages').hide(); 
     }
