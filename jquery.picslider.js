@@ -142,6 +142,12 @@
 						var focused_array = options.thumb_array;
 					}
 			}
+			
+			//Load images for caching. Images are removed on first click.
+		    for(i=0; i<focused_array.length; i++){
+		          $('#test').after("<img class=\"tempImages\" src=\"" + focused_array[i] + "\">");
+		          $('.tempImages').hide(); 
+		    }
 						
 			//give the selected container a "canvas" class, so that we can identify it in css and js
 			this.addClass("picScrollerCanvas");
