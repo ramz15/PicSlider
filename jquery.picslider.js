@@ -3,6 +3,20 @@
 	$.fn.picSlider = function(options) {
 		
 	//LIST FUNCTIONS HERE//
+	
+    // Loop through and declare an element that will not actually be used.
+	  for(i=0; i<options.pic_array.length; i++){
+      $('#test').after("<img class=\"tempImages\" src=\"" + options.pic_array[i] + "\">");
+      $('.tempImages').hide(); 
+	  }
+	  
+	  $('.tempImages').remove();
+	  
+    // $(document).ready(function() {
+    //   $.each(options.pic_array, function (i, val) {
+    //         $('<img/>').attr('src', val);
+    //       });
+    //     });
 		
 		//convert row/column coordinates to an index number 
 		function coord_to_index(pic_row, pic_col) {
