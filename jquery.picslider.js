@@ -3,13 +3,7 @@
 	$.fn.picSlider = function(options) {
 		
 	//LIST FUNCTIONS HERE//
-	
-    //Load images for caching. Images are removed on first click.
-    for(i=0; i<options.pic_array.length; i++){
-          $('#test').after("<img class=\"tempImages\" src=\"" + options.pic_array[i] + "\">");
-          $('.tempImages').hide(); 
-    }
-    
+	    
 		//convert row/column coordinates to an index number 
 		function coord_to_index(pic_row, pic_col) {
 		  var index = 0;
@@ -142,6 +136,12 @@
 						var focused_array = options.thumb_array;
 					}
 			}
+			
+			//Load images for caching. Images are removed on first click.
+		    for(i=0; i<focused_array.length; i++){
+		          $('#test').after("<img class=\"tempImages\" src=\"" + focused_array[i] + "\">");
+		          $('.tempImages').hide(); 
+		    }
 						
 			//give the selected container a "canvas" class, so that we can identify it in css and js
 			this.addClass("picScrollerCanvas");
