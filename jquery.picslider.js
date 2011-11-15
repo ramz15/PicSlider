@@ -4,20 +4,12 @@
 		
 	//LIST FUNCTIONS HERE//
 	
-    // Loop through and declare an element that will not actually be used.
-	  for(i=0; i<options.pic_array.length; i++){
-      $('#test').after("<img class=\"tempImages\" src=\"" + options.pic_array[i] + "\">");
-      $('.tempImages').hide(); 
-	  }
-	  
-	  $('.tempImages').remove();
-	  
-    // $(document).ready(function() {
-    //   $.each(options.pic_array, function (i, val) {
-    //         $('<img/>').attr('src', val);
-    //       });
-    //     });
-		
+    //Load images for caching. Images are removed on first click.
+    for(i=0; i<options.pic_array.length; i++){
+          $('#test').after("<img class=\"tempImages\" src=\"" + options.pic_array[i] + "\">");
+          $('.tempImages').hide(); 
+    }
+    
 		//convert row/column coordinates to an index number 
 		function coord_to_index(pic_row, pic_col) {
 		  var index = 0;
@@ -211,9 +203,13 @@
 			var current_img_index = 0;
 
 			var destination_index = 0;
-
+			
 			//call the move function on whatever thumb you click on 
 			$(".picScrollerThumbs").children().click(function () {
+			  
+			  //hide temp images 
+			  $('.tempImages').remove();
+			  
 				//deactivate the previous active element
 				$('.picScrollerActive').removeClass('picScrollerActive');
 
