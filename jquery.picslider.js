@@ -103,11 +103,40 @@
 		}
 			
 		//FUNCTION LIST ENDS HERE//	
-			//Define standard names for focused, blurry, and thumbnail arrays
-			var focused_array = ["images/1_focused.jpg", "images/2_focused.jpg", "images/3_focused.jpg", "images/4_focused.jpg", "images/5_focused.jpg", "images/6_focused.jpg", "images/7_focused.jpg", "images/8_focused.jpg", "images/9_focused.jpg"]
-			var blurred_array = ["images/1_blurred.jpg", "images/2_blurred.jpg", "images/3_blurred.jpg", "images/4_blurred.jpg", "images/5_blurred.jpg", "images/6_blurred.jpg", "images/7_blurred.jpg", "images/8_blurred.jpg", "images/9_blurred.jpg"]
-			var thumb_array = ["images/1_thumb.jpg", "images/2_thumb.jpg", "images/3_thumb.jpg", "images/4_thumb.jpg", "images/5_thumb.jpg", "images/6_thumb.jpg", "images/7_thumb.jpg", "images/8_thumb.jpg", "images/9_thumb.jpg"]
 			
+			//Define standard names for focused, blurry, and thumbnail arrays
+			array_names = ['focused_array', 'blurred_array', 'thumb_array'];
+			for(i in array_names) {
+				
+				//if the user does not define custom paths...
+				if(options[array_names[i]] === undefined) {
+					if(array_names[i] === 'focused_array'){
+						var focused_array = [];
+						for(i=1; i<=options.number; i++)
+							focused_array.push("images/" + i + "_focused.jpg");						
+					}
+					if(array_names[i] === 'blurred_array'){
+						var blurred_array = [];
+						for(i=1; i<=options.number; i++)
+							blurred_array.push("images/" + i + "_blurred.jpg");
+					}
+					if(array_names[i] === 'thumb_array'){
+						var thumb_array = [];
+						for(i=1; i<=options.number; i++)
+							thumb_array.push("images/" + i + "_thumb.jpg");						
+					}
+				}
+				//if the user chooses to define photo paths...
+				else {
+					if(array_names[i] === 'focused_array')
+						var focused_array = options.focused_array;
+					if(array_names[i] === 'blurred_array')
+						var focused_array = options.blurred_array;
+					if(array_names[i] === 'focused_array')
+						var focused_array = options.thumb_array;
+					}
+			}
+						
 			//give the selected container a "canvas" class, so that we can identify it in css and js
 			this.addClass("picScrollerCanvas");
 			
@@ -128,12 +157,15 @@
 			else
 				var cols = options.columns;
 			var rows = Math.ceil(focused_array.length/cols);
-			var count = 0; 
 
 			//put thumbnails in thumbnail container
+			var count = 0; 
 			for(i=0; i<rows; i++){
 				for(j=0; j<cols; j++){
-					$('.picScrollerThumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + thumb_array[count] + "\" /></a>").hide();
+					if(count === options.number)
+						break
+					else
+						$('.picScrollerThumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + thumb_array[count] + "\" /></a>").hide();
 					count += 1
 				}
 			}
@@ -201,7 +233,11 @@
 			var current_img_index = 0;
 
 			var destination_index = 0;
-
+			if(options.speed === undefined )
+				var move_speed = 350
+			else
+				var move_speed  = options.speed
+			
 			//call the move function on whatever thumb you click on 
 			$(".picScrollerThumbs").children().click(function () {
 				//deactivate the previous active element
@@ -221,7 +257,7 @@
 				destination_index  = coord_to_index(parseInt(row_num), parseInt(col_num));
 
 				//move to the new img
-				move(current_img_row, current_img_col, row_num, col_num, 350);
+				move(current_img_row, current_img_col, row_num, col_num, move_speed);
 
 				//fade the previous img
 				blur_current_img(current_img_index);

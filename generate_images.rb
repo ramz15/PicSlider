@@ -7,17 +7,18 @@ pic_array = ["images/1.JPG", "images/2.JPG", "images/3.JPG", "images/4.JPG", "im
 pic_array.each do |a|
   image = ImageList.new(a)
   match = a.match /\/(\d+)\./
-  mini_image.write("images/" + match[1] + "_focused.JPG")
+  image.write("images/" + match[1] + "_focused.JPG")
+end 
 
-#generate thumbs
+# #generate thumbs
 pic_array.each do |a| 
   image = ImageList.new(a)
   mini_image = image.scale(300, 199)
   match = a.match /\/(\d+)\./
   mini_image.write("images/" + match[1] + "_thumb.JPG")
-end 
- 
-#generate blurred images
+end
+
+# #generate blurred images
 pic_array.each do |a| 
   image = ImageList.new(a)
   #resize and blur
