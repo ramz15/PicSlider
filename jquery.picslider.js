@@ -3,7 +3,7 @@
 	$.fn.picSlider = function(options) {
 		
 	//LIST FUNCTIONS HERE//
-	    
+	
 		//convert row/column coordinates to an index number 
 		function coord_to_index(pic_row, pic_col) {
 		  var index = 0;
