@@ -21,7 +21,7 @@
 		function focus_current_img(index){		  
 		  $(".picSliderClear").remove();
 		  
-			$('#' + index).after("<img class=\"picSliderClear\" src=\"" + options.pic_array[index] + "\">");
+			$('#' + index).after("<img class=\"picSliderClear\" src=\"" + focused_array[index] + "\">");
 			
 			$(".picSliderClear").hide().fadeIn(800);
 			
@@ -38,12 +38,12 @@
 			"position": "absolute",
 			});
 				
-			//$('#' + index).attr("src", "" + options.pic_array[index]).fadeIn(3000);
+			//$('#' + index).attr("src", "" + focused_array[index]).fadeIn(3000);
 		}
 
 		//swap a given photo for its blurry counterpart
 		function blur_current_img(index){
-			$('#' + index).attr('src', options.blur_array[index] );
+			$('#' + index).attr('src', blurred_array[index] );
 		}
 
 		//move the canvas from a starting location to an ending location, at a certain speed
@@ -103,16 +103,20 @@
 		}
 			
 		//FUNCTION LIST ENDS HERE//	
+			//Define standard names for focused, blurry, and thumbnail arrays
+			var focused_array = ["images/1_focused.jpg", "images/2_focused.jpg", "images/3_focused.jpg", "images/4_focused.jpg", "images/5_focused.jpg", "images/6_focused.jpg", "images/7_focused.jpg", "images/8_focused.jpg", "images/9_focused.jpg"]
+			var blurred_array = ["images/1_blurred.jpg", "images/2_blurred.jpg", "images/3_blurred.jpg", "images/4_blurred.jpg", "images/5_blurred.jpg", "images/6_blurred.jpg", "images/7_blurred.jpg", "images/8_blurred.jpg", "images/9_blurred.jpg"]
+			var thumb_array = ["images/1_thumb.jpg", "images/2_thumb.jpg", "images/3_thumb.jpg", "images/4_thumb.jpg", "images/5_thumb.jpg", "images/6_thumb.jpg", "images/7_thumb.jpg", "images/8_thumb.jpg", "images/9_thumb.jpg"]
 			
 			//give the selected container a "canvas" class, so that we can identify it in css and js
 			this.addClass("picScrollerCanvas");
 			
 			//plug pics into canvas; all but first pic should be blurry
-			for(pic in options.pic_array) {
+			for(pic in focused_array) {
 				if(pic == 0) 
-					this.html("<img id=\"" + pic + "\" class=\"picSliderFirst\" src=\"" + options.pic_array[pic] + "\">");
+					this.html("<img id=\"" + pic + "\" class=\"picSliderFirst\" src=\"" + focused_array[pic] + "\">");
 				else 
-					this.append("<img id=\"" + pic + "\" class=\"picSliderBlur\" src=\"" + options.blur_array[pic] + "\">");
+					this.append("<img id=\"" + pic + "\" class=\"picSliderBlur\" src=\"" + blurred_array[pic] + "\">");
 			}
 			
 			//create a thumbnail container within the main container 
@@ -123,13 +127,13 @@
 				var cols = 3;
 			else
 				var cols = options.columns;
-			var rows = Math.ceil(options.pic_array.length/cols);
+			var rows = Math.ceil(focused_array.length/cols);
 			var count = 0; 
 
 			//put thumbnails in thumbnail container
 			for(i=0; i<rows; i++){
 				for(j=0; j<cols; j++){
-					$('.picScrollerThumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + options.thumb_array[count] + "\" /></a>").hide();
+					$('.picScrollerThumbs').append("<a href=\"#\"><img class=\"row-" + i + " col-" + j + "\"  src=\"" + thumb_array[count] + "\" /></a>").hide();
 					count += 1
 				}
 			}
