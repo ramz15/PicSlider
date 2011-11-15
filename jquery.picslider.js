@@ -4,12 +4,6 @@
 		
 	//LIST FUNCTIONS HERE//
 	
-    //Load images for caching. Images are removed on first click.
-    for(i=0; i<focused_array.length; i++){
-          $('#test').after("<img class=\"tempImages\" src=\"" + options.pic_array[i] + "\">");
-          $('.tempImages').hide(); 
-    }
-    
 		//convert row/column coordinates to an index number 
 		function coord_to_index(pic_row, pic_col) {
 		  var index = 0;
