@@ -54,7 +54,7 @@ Number is a required field; it should be an integer. Columns and speed are optio
 Focused\_array, blurred\_array, and thumb\_array are also optional fields. If you desire, you can set them as an array of paths to the appropriate photos, e.g. ('blurred array' : ['myphotosfolder/myblurredpic\_1', 'myphotosfolder/myblurredpic\_2']).
   
 **Step 3:**
-Make sure to include the div with the correct id in your HTML:
+Make sure you include the main.css file we provided and the div with the correct id in your HTML:
 
     <div id="div_id"></div>  
 
