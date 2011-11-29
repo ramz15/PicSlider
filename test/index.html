@@ -1,0 +1,22 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+  <script src="http://www.youtube.com/player_api"></script>
+  <script src="../src/jquery.picslider.js"></script>
+  <script>
+  
+  function onYouTubePlayerAPIReady() {
+    console.log('video player ready!');
+    $('#test').picSlider({
+			'number' : 4,
+			'columns' : 2,
+			'speed' : 200,
+		});
+  }
+  </script>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	<div id="test"></div>
+</body>
+</html>
